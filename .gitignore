@@ -12,6 +12,7 @@
 *.lock
 logs
 target
+bin
 /.apt_generated/
 data/
 .DS_Store
