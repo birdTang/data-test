@@ -1,4 +1,4 @@
-package sort;
+package com.tang.sort;
 
 /**
  * 快速排序

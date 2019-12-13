@@ -1,4 +1,4 @@
-package queue;
+package com.tang.queue;
 
 /**
  * 循环队列

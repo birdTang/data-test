@@ -1,4 +1,4 @@
-package queue;
+package com.tang.queue;
 
 /**
  * 基于链表的队列  --链式队列

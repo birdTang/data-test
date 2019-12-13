@@ -1,4 +1,4 @@
-package binary;
+package com.tang.binary;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

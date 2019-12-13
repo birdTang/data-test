@@ -1,4 +1,4 @@
-package queue;
+package com.tang.queue;
 
 /**
  * 基于数据实现--顺序队列

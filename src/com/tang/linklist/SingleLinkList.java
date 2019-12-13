@@ -1,3 +1,4 @@
+package com.tang.linklist;
 
 /**
  * 单链表的插入\删除\查找操作
@@ -26,7 +27,9 @@ public class SingleLinkList {
 		
 		return p;
 	}
-	
+	//无头结点
+    //表头部插入
+    //这种操作将于输入的顺序相反，逆序
 	 public void insertToHead(int value) {
 		 Node newNode = new Node(value,null);
 		 insertToHead(newNode);
@@ -40,6 +43,7 @@ public class SingleLinkList {
 			head = newNode;
 		}
 	 }
+	
 	 
 	 public void insertAfter(Node p,int value) {
 		 Node newNode = new Node(value, null);
@@ -139,6 +143,7 @@ public class SingleLinkList {
 	    return headNode;
 	  }
 	  
+	  
 	  //检测环
 	  public boolean checkCircle(Node list) {
 		  if (list==null) return false;
@@ -209,7 +214,7 @@ public class SingleLinkList {
 		  if (prev == null) {
 		      list = list.next;
 		    } else {
-		      prev.next = prev.next.next;
+		    	prev.next = slow.next;
 		    }
 		    return list;
 	  }
@@ -267,10 +272,10 @@ public class SingleLinkList {
 //		System.out.println(list.checkCircle(list.findByIndex(0)));
 		
 		//单链表反转，测试
-//		Node reverse = list.reverse(list.head);
-//		SingleLinkList reverseList = new SingleLinkList();
-//		reverseList.insertToHead(reverse);
-//		reverseList.printAll();
+		Node reverse = list.reverse(list.head);
+		SingleLinkList reverseList = new SingleLinkList();
+		reverseList.insertToHead(reverse);
+		reverseList.printAll();
 		
 		//有序列表合并--测试
 		SingleLinkList mergeList = new SingleLinkList();
@@ -287,5 +292,6 @@ public class SingleLinkList {
 		deleteList.insertToHead(4);
 		deleteList.insertToHead(5);
 		deleteList.deleteLastKth(deleteList.head, 2);
+		deleteList.printAll();
 	}
 }

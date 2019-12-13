@@ -1,4 +1,4 @@
-package stack;
+package com.tang.stack;
 
 /**
  * 基于数组实现的栈

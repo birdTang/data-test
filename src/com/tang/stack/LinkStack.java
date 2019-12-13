@@ -1,7 +1,8 @@
-package stack;
+package com.tang.stack;
 
 /**
  * 基于链表实现的栈
+ * 后进先出，就是插入链表头结点，删除链表头结点
  * @ate 2018年10月13日
  * @author Administrator
  */
@@ -9,6 +10,13 @@ public class LinkStack {
 
 	private Node top = null;
 	
+	/**
+	 * 
+	 * @date 2019年12月13日
+	 * @author tangp
+	 * @param value
+	 * @return
+	 */
 	public boolean push(String value) {
 		Node newNode = new Node(value, null);
 		

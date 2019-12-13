@@ -1,4 +1,4 @@
-package sort;
+package com.tang.sort;
 
 /**
  * 排序算法--冒泡，插入，选择排序
@@ -8,16 +8,34 @@ package sort;
  */
 public class SortMethod {
 
-	/**
-	 * 冒泡排序
-	 * @date 2018年11月13日
-	 * @author Administrator
-	 */
 	public static void bubbleSort(int[] datas,int n) {
 		if (n<=1) return;
 		System.out.println("==冒泡排序 before=="+  printVal(datas));
+		/** 6,5,4,3,2,1
+		 * i=0 j=0  --> 5, 6, 4, 3, 2, 1
+		 * i=0 j=1  --> 5, 4, 6, 3, 2, 1
+		 * i=0 j=2  --> 5, 4, 3, 6, 2, 1
+		 * i=0 j=3  --> 5, 4, 3, 2, 6, 1
+		 * i=0 j=4  --> 5, 4, 3, 2, 1, 6
+		 * 
+		 * i=1 j=0  --> 4, 5, 3, 2, 1, 6
+		 * i=1 j=1  --> 4, 3, 5, 2, 1, 6
+		 * i=1 j=2  --> 4, 3, 2, 5, 1, 6
+		 * i=1 j=3  --> 4, 3, 2, 1, 5, 6
+		 * 
+		 * i=2 j=0  --> 3, 4, 2, 1, 5, 6
+		 * i=2 j=1  --> 3, 2, 4, 1, 5, 6
+		 * i=2 j=2  --> 3, 2, 1, 4, 5, 6
+		 * 
+		 * i=3 j=0  --> 2, 3, 1, 4, 5, 6
+		 * i=3 j=1  --> 2, 1, 3, 4, 5, 6
+		 * 
+		 * i=4 j=0  --> 1, 2, 3, 4, 5, 6
+		 * 
+		 */
+		
 		for(int i=0;i<n;i++) {
-			//提前退出冒泡循环的标识
+			//提前退出冒泡循环的标识,若某次冒泡未发生任何数据交换移动，则说明数据已经按从小到大排序了
 			boolean flag = false;
 			
 			for(int j=0;j<n-i-1;j++) {
@@ -35,6 +53,7 @@ public class SortMethod {
 	
 	/**
 	 * 插入排序
+	 * 取未排序区间中的元素，在已排序区间中找到合适的插入位置将其插入，并保证已排序区间数据一直有序
 	 * @date 2018年11月13日
 	 * @author tangp
 	 * @param datas
@@ -43,17 +62,40 @@ public class SortMethod {
 	public static void insertionSort(int[] datas,int n) {
 		if (n<=1) return;
 		System.out.println("==插入排序 before=="+  printVal(datas));
+		/**
+		 * 4,5,6,3,2,1
+		 * 
+		 * i=1,j=0 --> 4, 5, 6, 3, 2, 1
+		 * 
+		 * i=2,j=1  --> 4, 5, 6, 3, 2, 1
+		 * 
+		 *  i=3,j=2  -->4, 5, 6, 6, 2, 1
+		 *  i=3,j=1  -->4, 5, 5, 6, 2, 1
+		 *  i=3,j=0  -->4, 4, 5, 6, 2, 1--插入->3, 4, 5, 6, 2, 1
+		 *  
+		 *  i=4,j=3  -->3, 4, 5, 6, 6, 1
+		 *  i=4,j=2  -->3, 4, 5, 5, 6, 1
+		 *  i=4,j=1  -->3, 4, 4, 5, 6, 1
+		 *  i=4,j=0  -->3, 3, 4, 5, 6, 1--插入->2, 3, 4, 5, 6, 1
+		 *  
+		 *  i=5,j=4  -->2, 3, 4, 5, 6, 6
+		 *  i=5,j=3  -->2, 3, 4, 5, 5, 6
+		 *  i=5,j=2  -->2, 3, 4, 4, 5, 6
+		 *  i=5,j=1  -->2, 3, 3, 4, 5, 6
+		 *  i=5,j=0  -->2, 2, 3, 4, 5, 6 --插入->1, 2, 3, 4, 5, 6
+		 */
 		
 		for(int i=1;i<n;i++) {
+			//待排区域
 			int val = datas[i];
 			int j = i-1;
-			//查找插入的位置
+			//已排区域， 查找插入的位置
 			for(;j>=0;j--) {
 				if (datas[j]>val) {
-					datas[j+1] = datas[j];
+					datas[j+1] = datas[j]; //数据移动
 				}else break;
 			}
-			
+			//插入
 			datas[j+1] = val;
 		}
 		
@@ -61,15 +103,49 @@ public class SortMethod {
 	}
 	
 	/**
-	 * 选择排序
+	 * 选择排序：找到待排区域中的最小值，放入已排区域的尾部
 	 * @date 2018年11月13日
 	 * @author tangp
 	 * @param datas
 	 * @param n
 	 */
+	public static void select(int[] datas,int n) {
+		if(n<=1) return;
+		
+		for(int i=0;i<n;i++) {
+			int minIndex = i;
+			for(int j=i+1;j<n;j++) {
+				if(datas[j]<datas[minIndex]) {
+					minIndex = j;
+				}
+			}
+			//交换最小值位置
+			int tmp = datas[i];
+			datas[i] = datas[minIndex];
+			datas[minIndex] = tmp;
+		}
+	}
+	
+	public static void select1(int[] datas,int n) {
+		if(n<=1) return;
+		
+		for(int i=0;i<n;i++) {
+			int minindex = i;
+			for(int j=i+1;j<n;j++) {
+				if(datas[j]<datas[minindex]) {
+					minindex = j;
+				}
+			}
+			//交换最小值位置
+			int temp = datas[i];
+			datas[i] = datas[minindex];
+			datas[minindex] = temp;
+		}
+	}
+	
 	public static void selectionSort(int[] datas,int n) {
 		if (n<=1) return;
-		System.out.println("==插入排序 before=="+  printVal(datas));
+		System.out.println("==选择排序 before=="+  printVal(datas));
 		
 		for(int i=0;i<n;i++) {
 			//查找 最小值
@@ -86,7 +162,7 @@ public class SortMethod {
 		
 		}
 		
-		System.out.println("==插入排序 end====="+  printVal(datas));
+		System.out.println("==选择排序 end====="+  printVal(datas));
 	}
 	/**
 	   * 向下冒泡。可能比冒泡更易懂？
@@ -174,7 +250,7 @@ public class SortMethod {
 	}
 	
 	public static void main(String[] args) {
-		int[] datas = {4,5,6,3,2,1};
+		int[] datas = {6,5,4,3,2,1};
 		SortMethod.bubbleSort(datas, datas.length);
 		
 		int[] datas2 = {4,5,6,3,2,1};
