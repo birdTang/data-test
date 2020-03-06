@@ -193,10 +193,37 @@ public class SingleLinkList {
 		  return first;
 	  }
 	  
+	//有序列表合并 ，按数值从小到大排序
+	  public Node mergeSortedLists2(Node la,Node lb) {
+		  if (la==null) return lb;
+		  if (lb==null) return la;
+		  Node first = new Node();
+		  Node p = la;
+		  Node q = lb;
+		  Node r = first;
+		  while(p!=null && q!=null) {
+			  if (p.data<q.data) {
+				r.next = p;
+				p = p.next;
+			  }else {
+				r.next = q;
+				q = q.next;
+			  }
+			  r = r.next;
+		  }
+		  
+		if (p!=null) {
+			r.next = p;
+		}else {
+			r.next = q;
+		}
+		  return first.next;
+	  }
 	  //删除倒数第K个结点
 	  public Node deleteLastKth(Node list,int k) {
 		  Node fast = list;
 		  int i=1;
+		  //得到正数第K个设置为fast ,倒数第K个 = fast-slow
 		  while(fast!=null && i<k) {
 			  fast = fast.next;
 			  ++i;
@@ -239,6 +266,8 @@ public class SingleLinkList {
 		private int data;
 		private Node next;
 		
+		public Node() {
+		}
 		
 		public Node(int data, Node next) {
 			super();
@@ -262,8 +291,8 @@ public class SingleLinkList {
 	}
 	public static void main(String[] args) {
 		SingleLinkList list = new SingleLinkList();
+		list.insertToHead(5);
 		list.insertToHead(3);
-		list.insertToHead(2);
 		list.insertToHead(1);
 		list.printAll();
 		//检测环，测试
@@ -272,17 +301,21 @@ public class SingleLinkList {
 //		System.out.println(list.checkCircle(list.findByIndex(0)));
 		
 		//单链表反转，测试
-		Node reverse = list.reverse(list.head);
-		SingleLinkList reverseList = new SingleLinkList();
-		reverseList.insertToHead(reverse);
-		reverseList.printAll();
+//		Node reverse = list.reverse(list.head);
+//		SingleLinkList reverseList = new SingleLinkList();
+//		reverseList.insertToHead(reverse);
+//		reverseList.printAll();
 		
 		//有序列表合并--测试
-		SingleLinkList mergeList = new SingleLinkList();
-		mergeList.insertToHead(4);
-		mergeList.insertToHead(5);
-		mergeList.insertToHead(6);
-		mergeList.mergeSortedLists(list.head, mergeList.head);
+//		SingleLinkList mergeList = new SingleLinkList();
+//		mergeList.insertToHead(6);
+//		mergeList.insertToHead(4);
+//		mergeList.insertToHead(2);
+//		Node mergeSortedLists2 = mergeList.mergeSortedLists2(list.head, mergeList.head);
+//		while (mergeSortedLists2!=null) {
+//			System.out.println(mergeSortedLists2.getData());
+//			mergeSortedLists2 = mergeSortedLists2.next;
+//		}
 		
 		//删除倒数k个元素 
 		SingleLinkList deleteList = new SingleLinkList();

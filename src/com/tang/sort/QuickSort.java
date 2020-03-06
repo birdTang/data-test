@@ -22,8 +22,8 @@ public class QuickSort {
 	
 	private static int partition(int[] a,int p,int r) {
 		
-		int pivot = a[r];
-		int i = p;
+		int pivot = a[r];  //分区点
+		int i = p; //游标
 		for(int j=p;j<=r;j++) {
 			//小于pivot，则交换
 			if(a[j] < pivot) {
@@ -33,7 +33,7 @@ public class QuickSort {
 				++i;
 			}
 		}
-		
+		//交换游标和分区点
 		int tmp = a[i];
 		a[i] = a[r];
 		a[r] = tmp;

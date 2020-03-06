@@ -104,47 +104,14 @@ public class SortMethod {
 	
 	/**
 	 * 选择排序：找到待排区域中的最小值，放入已排区域的尾部
-	 * @date 2018年11月13日
+	 * @date 2019年12月16日
 	 * @author tangp
 	 * @param datas
 	 * @param n
 	 */
-	public static void select(int[] datas,int n) {
-		if(n<=1) return;
-		
-		for(int i=0;i<n;i++) {
-			int minIndex = i;
-			for(int j=i+1;j<n;j++) {
-				if(datas[j]<datas[minIndex]) {
-					minIndex = j;
-				}
-			}
-			//交换最小值位置
-			int tmp = datas[i];
-			datas[i] = datas[minIndex];
-			datas[minIndex] = tmp;
-		}
-	}
-	
-	public static void select1(int[] datas,int n) {
-		if(n<=1) return;
-		
-		for(int i=0;i<n;i++) {
-			int minindex = i;
-			for(int j=i+1;j<n;j++) {
-				if(datas[j]<datas[minindex]) {
-					minindex = j;
-				}
-			}
-			//交换最小值位置
-			int temp = datas[i];
-			datas[i] = datas[minindex];
-			datas[minindex] = temp;
-		}
-	}
-	
 	public static void selectionSort(int[] datas,int n) {
 		if (n<=1) return;
+		
 		System.out.println("==选择排序 before=="+  printVal(datas));
 		
 		for(int i=0;i<n;i++) {
